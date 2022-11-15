@@ -6,10 +6,10 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       event_id: {
-        primaryKey: true,
         type: Sequelize.STRING
       },
       user_id: {
