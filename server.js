@@ -41,20 +41,8 @@ app.post('/login', async (req, res) => {
     })
 
     if(user!=null) {
+      res.send({ signedIn: true, username: user.username, host: user.host })
 
-        res.send({ signedIn: true, username: user.username, host: user.host })
-    //     // bcrypt.compare(req.body.password, user.password, function(err, result) {
-
-    //         // if(result == true) {
-    //         //     username = user.username
-    //         //     res.redirect("/jobs")
-    //         // }
-    //         // else {
-    //             // res.redirect('/login')
-    //         // }
-    //     // });
-    // // }
-    // // else {
     }
     else {
       res.send({ signedIn: false })
