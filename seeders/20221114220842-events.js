@@ -5,7 +5,6 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('events', [
       {
-        event_id: '1',
         year: 2022,
         month: 12,
         day: 3,
@@ -23,7 +22,6 @@ module.exports = {
       },
       
       {
-        event_id: '2',
         year: 2022,
         month: 11,
         day: 19,
@@ -40,7 +38,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '3',
         year: 2022,
         month: 12,
         day: 17,
@@ -57,7 +54,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '4',
         year: 2023,
         month: 1,
         day: 2,
@@ -74,7 +70,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '5',
         year: 2023,
         month: 1,
         day: 1,
@@ -91,7 +86,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '6',
         year: 2023,
         month: 3,
         day: 12,
@@ -108,7 +102,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '7',
         year: 2023,
         month: 5,
         day: 22,
@@ -125,7 +118,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '8',
         year: 2023,
         month: 2,
         day: 21,
@@ -142,7 +134,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '9',
         year: 2023,
         month: 7,
         day: 4,
@@ -159,7 +150,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '10',
         year: 2023,
         month: 6,
         day: 17,
@@ -176,7 +166,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '11',
         year: 2022,
         month: 12,
         day: 3,
@@ -193,7 +182,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '12',
         year: 2022,
         month: 12,
         day: 3,
@@ -210,7 +198,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '13',
         year: 2022,
         month: 11,
         day: 16,
@@ -227,7 +214,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '14',
         year: 2022,
         month: 11,
         day: 16,
@@ -244,7 +230,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        event_id: '15',
         year: 2022,
         month: 11,
         day: 16,

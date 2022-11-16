@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   events.init({
-    event_id: DataTypes.STRING,
     year: DataTypes.INTEGER,
     month: DataTypes.INTEGER,
     day: DataTypes.INTEGER,
