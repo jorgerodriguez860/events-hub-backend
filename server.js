@@ -50,6 +50,43 @@ app.post('/login', async (req, res) => {
 
 })
 
+app.post('/createevent', async (req, res) => {
+  // console.log(req.body)
+  // res.send(req.body)
+
+      //check if username matches in the database
+      const user = await users.findOne({
+        where: {
+            username : req.body.user_id,
+        }
+    })
+
+    if(user!=null) {
+      // res.send({ signedIn: true, username: user.username, host: user.host })
+      events.create({
+        year: req.body.year,
+        month: req.body.month,
+        day: req.body.day,
+        hour: req.body.hour,
+        minute: req.body.minute,
+        type: req.body.type,
+        title: req.body.title,
+        description: req.body.description,
+        city: req.body.city,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        user_id: req.body.user_id,
+      })
+
+      res.send({created: true})
+
+    }
+    else {
+      res.send({ created: false })
+    }
+
+})
+
 
 // ----------------------------------------------------------------------------------------------------
 // Server

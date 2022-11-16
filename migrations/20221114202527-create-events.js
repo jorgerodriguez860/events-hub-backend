@@ -8,10 +8,6 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      event_id: {
-        primaryKey: true,
-        type: Sequelize.STRING
-      },
       year: {
         type: Sequelize.INTEGER
       },
