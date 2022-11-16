@@ -3,7 +3,12 @@
 
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 const { users, events, participants } = require('./models');
+const bcrypt = require('bcrypt');
+const saltRounds = 8;
 
 // ----------------------------------------------------------------------------------------------------
 // Body of endpoints here
@@ -23,6 +28,39 @@ app.get('/mapevents', async (req, res) => {
   res.send(eventsList)
 })
 
+app.post('/login', async (req, res) => {
+  // console.log(req.body)
+  // res.send(req.body)
+
+      //check if username matches in the database
+      const user = await users.findOne({
+        where: {
+            username : req.body.username,
+            password : req.body.password
+        }
+    })
+
+    if(user!=null) {
+
+        res.send({ signedIn: true, username: user.username, host: user.host })
+    //     // bcrypt.compare(req.body.password, user.password, function(err, result) {
+
+    //         // if(result == true) {
+    //         //     username = user.username
+    //         //     res.redirect("/jobs")
+    //         // }
+    //         // else {
+    //             // res.redirect('/login')
+    //         // }
+    //     // });
+    // // }
+    // // else {
+    }
+    else {
+      res.send({ signedIn: false })
+    }
+
+})
 
 
 // ----------------------------------------------------------------------------------------------------
