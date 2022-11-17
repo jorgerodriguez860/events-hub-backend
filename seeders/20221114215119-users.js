@@ -5,7 +5,6 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('users', [
       {
-        user_id: '1',
         host: true,
         username: 'host1',
         password: 'goodpassword',
@@ -16,7 +15,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        user_id: '2',
         host: true,
         username: 'host2',
         password: 'canthackme',
@@ -27,7 +25,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        user_id: '3',
         host: false,
         username: 'user1',
         password: 'imcool',
@@ -38,7 +35,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        user_id: '4',
         host: false,
         username: 'user2',
         password: 'mybirthday',
@@ -49,7 +45,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        user_id: '5',
         host: false,
         username: 'user3',
         password: 'passwordnotbackwards',
