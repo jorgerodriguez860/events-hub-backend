@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 const { users, events, participants } = require('./models');
+const { Op } = require("sequelize")
 const bcrypt = require('bcrypt');
 const saltRounds = 8;
 
@@ -148,6 +149,107 @@ app.post('/addparticipant', async (req, res) => {
     }
 
 })
+
+// get events i created
+// need an id,
+app.get('/eventsicreated', async (req, res) => {
+  
+  // console.log(req.query.user)
+  const eventsList = await events.findAll({
+    where: {
+        user_id: req.query.user
+    }
+})
+
+  console.log(eventsList)
+  res.send(eventsList)
+})
+
+// delete event i created
+// need an id,
+app.delete('/deleteeventicreated/:id', async (req, res) => {
+  console.log(req.params.id)
+  // res.send(req.params.id)
+
+  const event = await events.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+
+    if(event!=null) {
+      const event = await events.destroy({
+          where: {
+              id: req.params.id
+          }
+      })
+
+      const participant = await participants.destroy({
+        where: {
+            event_id: req.params.id
+        }
+    })
+      res.send({status: 'deleted', event: event})
+    }
+    else {
+      res.send({ status: 'not deleted' })
+    }
+
+})
+
+// get my events that i signed up for
+// need an id,
+app.get('/myevents', async (req, res) => {
+  
+  // console.log(req.query.user)
+  const participantsList = await participants.findAll({
+    where: {
+        user_id: req.query.user_id
+    }
+  })
+  let eventArray = participantsList.map((participantsObj) => {
+    return participantsObj.event_id
+  })
+
+  const myEvents = await events.findAll({
+    where: {
+      id : eventArray
+    }
+  })
+
+  console.log('1',eventArray)
+  console.log('2',myEvents)
+  res.send(myEvents)
+})
+
+// delete event im participating in
+// need an id,user_id
+app.delete('/deletejoinedevent/:event_id/:user', async (req, res) => {
+  console.log(req.params.id)
+  // res.send(req.params.id)
+
+  const found = await participants.findOne({
+    where: {
+      event_id: req.params.event_id,
+      user_id: req.params.user
+    }
+  })
+
+    if(found!=null) {
+      const participant = await participants.destroy({
+        where: {
+          event_id: req.params.event_id,
+          user_id: req.params.user
+        }
+    })
+      res.send({status: 'participant'})
+    }
+    else {
+      res.send({ status: 'not deleted' })
+    }
+
+})
+
 
 
 // ----------------------------------------------------------------------------------------------------
