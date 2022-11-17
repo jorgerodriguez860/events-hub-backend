@@ -88,6 +88,32 @@ app.post('/createevent', async (req, res) => {
 
 })
 
+app.post('/createusers', async (req, res) => {
+
+    //check if username matches in the database
+    const user = await users.findOne({
+        where: {
+            username : req.body.username,
+        }
+    })
+
+    if(user === null) {
+      users.create({
+        host: req.body.host,
+        username: req.body.username,
+        password: req.body.password,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        location: req.body.location,
+      })
+
+      res.send({created: true})
+    }
+    else {
+      res.send({ created: false })
+    }
+})
+
 app.post('/addparticipant', async (req, res) => {
   // console.log(req.body)
   // res.send(req.body)
