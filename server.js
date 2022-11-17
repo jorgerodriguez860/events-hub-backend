@@ -87,6 +87,42 @@ app.post('/createevent', async (req, res) => {
 
 })
 
+app.post('/addparticipant', async (req, res) => {
+  // console.log(req.body)
+  // res.send(req.body)
+
+  const participant = await participants.findOne({
+    where: {
+      event_id: req.body.event_id,
+      user_id: req.body.user_id
+    }
+  })
+      //check if username matches in the database
+      const user = await users.findOne({
+        where: {
+            username : req.body.user_id,
+        }
+    })
+
+    if(participant!=null) {
+      res.send({status: 'exists'})
+    }
+    else if(user!=null) {
+      // res.send({ signedIn: true, username: user.username, host: user.host })
+      participants.create({
+        event_id: req.body.event_id,
+        user_id: req.body.user_id
+      })
+
+      res.send({status: 'added'})
+
+    }
+    else {
+      res.send({ status: 'not added' })
+    }
+
+})
+
 
 // ----------------------------------------------------------------------------------------------------
 // Server
