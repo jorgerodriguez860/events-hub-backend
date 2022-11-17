@@ -41,8 +41,10 @@ app.post('/login', async (req, res) => {
         }
     })
 
+    // console.log('user: ', user)
+
     if(user!=null) {
-      res.send({ signedIn: true, username: user.username, host: user.host })
+      res.send({ signedIn: true, username: user.username, host: user.host, id: user.id })
 
     }
     else {
