@@ -6,11 +6,8 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        type: Sequelize.INTEGER
-      },
-      user_id: {
         primaryKey: true,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER
       },
       host: {
         type: Sequelize.BOOLEAN
