@@ -123,6 +123,50 @@ app.post('/addparticipant', async (req, res) => {
 
 })
 
+// get events i created
+// need an id,
+app.get('/eventsicreated', async (req, res) => {
+  
+  // console.log(req.query.user)
+  const eventsList = await events.findAll({
+    where: {
+        user_id: req.query.user
+    }
+})
+
+  console.log(eventsList)
+  res.send(eventsList)
+})
+
+// delete event i created
+// need an id,
+app.delete('/deleteeventicreated/:id', async (req, res) => {
+  console.log(req.params.id)
+  // res.send(req.params.id)
+
+  const event = await events.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+
+    if(event!=null) {
+      const event = await events.destroy({
+          where: {
+              id: req.params.id
+          }
+      })
+      res.send({status: 'deleted', event: event})
+
+
+    }
+    else {
+      res.send({ status: 'not deleted' })
+    }
+
+})
+
+
 
 // ----------------------------------------------------------------------------------------------------
 // Server
