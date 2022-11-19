@@ -44,7 +44,7 @@ app.post('/login', async (req, res) => {
     // console.log('user: ', user)
 
     if(user!=null) {
-      res.send({ signedIn: true, username: user.username, host: user.host, id: user.id })
+      res.send({ signedIn: true, username: user.username, host: user.host, id: user.id, city: user.location })
 
     }
     else {
@@ -163,14 +163,14 @@ app.get('/eventsicreated', async (req, res) => {
     }
 })
 
-  console.log(eventsList)
+  // console.log(eventsList)
   res.send(eventsList)
 })
 
 // delete event i created
 // need an id,
 app.delete('/deleteeventicreated/:id', async (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   // res.send(req.params.id)
 
   const event = await events.findOne({
@@ -219,15 +219,15 @@ app.get('/myevents', async (req, res) => {
     }
   })
 
-  console.log('1',eventArray)
-  console.log('2',myEvents)
+  // console.log('1',eventArray)
+  // console.log('2',myEvents)
   res.send(myEvents)
 })
 
 // delete event im participating in
 // need an id,user_id
 app.delete('/deletejoinedevent/:event_id/:user', async (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   // res.send(req.params.id)
 
   const found = await participants.findOne({
@@ -250,6 +250,22 @@ app.delete('/deletejoinedevent/:event_id/:user', async (req, res) => {
       res.send({ status: 'not deleted' })
     }
 
+})
+
+// get participants of an event
+// need an id,
+app.get('/eventparticipants', async (req, res) => {
+  
+  // console.log(req.query)
+  const participantsList = await participants.findAll({
+    where: {
+        event_id: req.query.event_id
+    }
+  })
+
+
+  // console.log(participantsList)
+  res.send(participantsList)
 })
 
 
