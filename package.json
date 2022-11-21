@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "sequelize-cli db:migrate && sequelize-cli db:seed:all",
+    "start": "nodemon server.js",
     "db:up": "npx sequelize db:migrate && npx sequelize db:seed:all",
     "db:down": "npx sequelize db:seed:undo:all && npx sequelize-cli db:migrate:undo:all"
   },
