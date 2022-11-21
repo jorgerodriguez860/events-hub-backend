@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "build": "sequelize-cli db:migrate && sequelize-cli db:seed:all",
     "db:up": "npx sequelize db:migrate && npx sequelize db:seed:all",
     "db:down": "npx sequelize db:seed:undo:all && npx sequelize-cli db:migrate:undo:all"
   },
