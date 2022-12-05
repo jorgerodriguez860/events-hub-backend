@@ -16,7 +16,7 @@ const saltRounds = 8;
 
 // get events to show on map
 // need a city, date
-app.get('/mapevents', async (req, res) => {
+app.get('https://events-hub-db.herokuapp.com/mapevents', async (req, res) => {
   const eventsList = await events.findAll({
     where: {
         city : req.query.city,
@@ -29,7 +29,7 @@ app.get('/mapevents', async (req, res) => {
   res.send(eventsList)
 })
 
-app.post('/login', async (req, res) => {
+app.post('https://events-hub-db.herokuapp.com/login', async (req, res) => {
   // console.log(req.body)
   // res.send(req.body)
 
@@ -53,7 +53,7 @@ app.post('/login', async (req, res) => {
 
 })
 
-app.post('/createevent', async (req, res) => {
+app.post('https://events-hub-db.herokuapp.com/createevent', async (req, res) => {
   // console.log(req.body)
   // res.send(req.body)
 
@@ -90,7 +90,7 @@ app.post('/createevent', async (req, res) => {
 
 })
 
-app.post('/createusers', async (req, res) => {
+app.post('https://events-hub-db.herokuapp.com/createusers', async (req, res) => {
 
     // console.log(req.body)
     if(req.body.username === '' || req.body.password === '' || req.body.fname === '' || req.body.lname === '' || req.body.location === '') {
@@ -124,7 +124,7 @@ app.post('/createusers', async (req, res) => {
     
 })
 
-app.post('/addparticipant', async (req, res) => {
+app.post('https://events-hub-db.herokuapp.com/addparticipant', async (req, res) => {
   // console.log(req.body)
   // res.send(req.body)
 
@@ -162,7 +162,7 @@ app.post('/addparticipant', async (req, res) => {
 
 // get events i created
 // need an id,
-app.get('/eventsicreated', async (req, res) => {
+app.get('https://events-hub-db.herokuapp.com/eventsicreated', async (req, res) => {
   
   // console.log(req.query.user)
   const eventsList = await events.findAll({
@@ -177,7 +177,7 @@ app.get('/eventsicreated', async (req, res) => {
 
 // delete event i created
 // need an id,
-app.delete('/deleteeventicreated/:id', async (req, res) => {
+app.delete('https://events-hub-db.herokuapp.com/deleteeventicreated/:id', async (req, res) => {
   // console.log(req.params.id)
   // res.send(req.params.id)
 
@@ -209,7 +209,7 @@ app.delete('/deleteeventicreated/:id', async (req, res) => {
 
 // get my events that i signed up for
 // need an id,
-app.get('/myevents', async (req, res) => {
+app.get('https://events-hub-db.herokuapp.com/myevents', async (req, res) => {
   
   // console.log(req.query.user)
   const participantsList = await participants.findAll({
@@ -234,7 +234,7 @@ app.get('/myevents', async (req, res) => {
 
 // delete event im participating in
 // need an id,user_id
-app.delete('/deletejoinedevent/:event_id/:user', async (req, res) => {
+app.delete('https://events-hub-db.herokuapp.com/deletejoinedevent/:event_id/:user', async (req, res) => {
   // console.log(req.params.id)
   // res.send(req.params.id)
 
@@ -262,7 +262,7 @@ app.delete('/deletejoinedevent/:event_id/:user', async (req, res) => {
 
 // get participants of an event
 // need an id,
-app.get('/eventparticipants', async (req, res) => {
+app.get('https://events-hub-db.herokuapp.com/eventparticipants', async (req, res) => {
   
   // console.log(req.query)
   const participantsList = await participants.findAll({
